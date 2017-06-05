@@ -21,6 +21,10 @@ router.get('/register', function (req, res, next) {
     res.render('admin/register');
 });
 
+router.get('/login', function (req, res, next) {
+	res.render('admin/login');
+})
+
 router.get('/timeline', function (req, res, next) {
     res.render('admin/timeline');
 });
