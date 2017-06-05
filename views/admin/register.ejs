@@ -1,201 +1,163 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Dark Admin</title>
 
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/local.css" />
+    <% include partials/head.ejs %>
 
-    <script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-
-      <style>
+    <style>
 
         div {
-            padding-bottom:20px;
+            padding-bottom: 20px;
         }
 
     </style>
 </head>
 <body>
 
-    <div id="wrapper">
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/admin">Back to Admin</a>
-            </div>
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li><a href="/admin"><i class="fa fa-bullseye"></i> Dashboard</a></li>
-                    <li><a href="/admin/portfolio"><i class="fa fa-tasks"></i> Portfolio</a></li>
-                    <li><a href="/admin/blog"><i class="fa fa-globe"></i> Blog</a></li>
-                    <li><a href="/admin/signup"><i class="fa fa-list-ol"></i> SignUp</a></li>
-                    <li class="selected"><a href="/admin/register"><i class="fa fa-font"></i> Register</a></li>
-                    <li><a href="/admin/timeline"><i class="fa fa-font"></i> Timeline</a></li>
-                    <li><a href="/admin/forms"><i class="fa fa-list-ol"></i> Forms</a></li>
-                    <li><a href="/admin/typography"><i class="fa fa-font"></i> Typography</a></li>
-                    <li><a href="/admin/bootstrap-elements"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
-                    <li><a href="/admin/bootstrap-grid"><i class="fa fa-table"></i > Bootstrap Grid</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right navbar-user">
-                    <li class="dropdown messages-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">2 New Messages</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-bell"></i></span>
-                                    <span class="message">Security alert</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-bell"></i></span>
-                                    <span class="message">Security alert</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#">Go to Inbox <span class="badge">2</span></a></li>
-                        </ul>
-                    </li>
-                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Steve Miller<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+<div id="wrapper">
 
-       <div>
-        <div class="row text-center">
-            <h2>New Registration</h2>
-        </div>
-        <div>
-            <label for="firstname" class="col-md-2">
-                First Name:
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
+    <% include partials/navbar.ejs %>
+
+    <div>
+        <form action="/admin/register" method="post">
+
+            <div class="row text-center">
+                <h2>New Registration</h2>
             </div>
-            <div class="col-md-1">
-                <i class="fa fa-lock fa-2x"></i>
-            </div>
-        </div>        
-        <div>
-            <label for="lastname" class="col-md-2">
-                Last Name:
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
-            </div>
-             <div class="col-md-1">
-                <i class="fa fa-lock fa-2x"></i>
-            </div>
-        </div>
-        <div>
-            <label for="emailaddress" class="col-md-2">
-                Email address:
-            </label>
-            <div class="col-md-9">
-                <input type="email" class="form-control" id="emailaddress" placeholder="Enter email address">
-                <p class="help-block">
-                    Example: yourname@domain.com
-                </p>
-            </div>
-             <div class="col-md-1">
-                <i class="fa fa-lock fa-2x"></i>
-            </div>
-        </div>
-        <div>
-            <label for="password" class="col-md-2">
-                Password:
-            </label>
-            <div class="col-md-9">
-                <input type="password" class="form-control" id="password" placeholder="Enter Password">
-                <p class="help-block">
-                    Min: 6 characters (Alphanumeric only)
-                </p>
-            </div>
-             <div class="col-md-1">
-                <i class="fa fa-lock fa-2x"></i>
-            </div>
-        </div>
-        <div>
-            <label for="sex" class="col-md-2">
-                Gender:
-            </label>
-            <div class="col-md-10">
-                <label class="radio">
-                    <input type="radio" name="sex" id="sex" value="male" checked>
-                    Male
+            <div>
+                <label for="firstname" class="col-md-2">
+                    First Name:
                 </label>
-                <label class="radio">
-                    <input type="radio" name="sex" id="Radio1" value="female">
-                    Female
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="first_name" id="firstname" placeholder="Enter First Name">
+                </div>
+                <div class="col-md-1">
+                    <i class="fa fa-lock fa-2x"></i>
+                </div>
+            </div>
+            <div>
+                <label for="lastname" class="col-md-2">
+                    Last Name:
                 </label>
-            </div>             
-        </div>
-        <div>
-            <label for="country" class="col-md-2">
-                Country:
-            </label>
-            <div class="col-md-9">
-                <select name="country" id="country" class="form-control">
-                    <option>--Please Select--</option>
-                    <option>India</option>
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>United Kingdom</option>
-                    <option>Others</option>
-                </select>
-            </div>            
-        </div>
-        <div>
-            <label for="uploadimage" class="col-md-2">
-                Upload Image:
-            </label>
-            <div class="col-md-10">
-                <input type="file" name="uploadimage" id="uploadimage">
-                <p class="help-block">
-                    Allowed formats: jpeg, jpg, gif, png
-                </p>
-            </div>          
-        </div>
-        <div>
-            <div class="col-md-2">
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="last_name" id="lastname" placeholder="Enter Last Name">
+                </div>
+                <div class="col-md-1">
+                    <i class="fa fa-lock fa-2x"></i>
+                </div>
             </div>
-            <div class="col-md-10">
-                <label>
-                    <input type="checkbox">I hereby accept the terms and conditions for using this site</label>
-            </div>            
-        </div>
-        <div class="row">
-            <div class="col-md-2">
+            <div>
+                <label for="emailaddress" class="col-md-2">
+                    Email address:
+                </label>
+                <div class="col-md-9">
+                    <input type="email" class="form-control" name="email" id="emailaddress" placeholder="Enter email address">
+                    <p class="help-block">
+                        Example: yourname@domain.com
+                    </p>
+                </div>
+                <div class="col-md-1">
+                    <i class="fa fa-lock fa-2x"></i>
+                </div>
             </div>
-            <div class="col-md-10">
-                <button type="submit" class="btn btn-info">
-                    Register
-                </button>
+            <div>
+                <label for="password" class="col-md-2">
+                    Password:
+                </label>
+                <div class="col-md-9">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
+                    <p class="help-block">
+                        Min: 6 characters (Alphanumeric only)
+                    </p>
+                </div>
+                <div class="col-md-1">
+                    <i class="fa fa-lock fa-2x"></i>
+                </div>
             </div>
-        </div>
-    </div>  
+            <div>
+                <label for="sex" class="col-md-2">
+                    Gender:
+                </label>
+                <div class="col-md-10">
+                    <label class="radio">
+                        <input type="radio" name="gender" id="male" value="Male" checked>
+                        Male
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="gender" id="female" value="Female">
+                        Female
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="gender" id="other" value="Other">
+                        Other
+                    </label>
+                </div>
+            </div>
+            <div>
+                <label for="administrator" class="col-md-2">
+                    Role:
+                </label>
+                <div class="col-md-10">
+                    <label class="radio">
+                        <input type="radio" name="role" id="administrator" value="Administrator" checked>
+                        Administrator
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="role" id="moderator" value="Moderator">
+                        Moderator
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="role" id="user" value="User">
+                        User
+                    </label>
+                </div>
+            </div>
+            <div>
+                <label for="country" class="col-md-2">
+                    Country:
+                </label>
+                <div class="col-md-9">
+                    <select name="country" id="country" class="form-control">
+                        <option>--Please Select--</option>
+                        <option>India</option>
+                        <option>United States</option>
+                        <option>Canada</option>
+                        <option>United Kingdom</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label for="uploadimage" class="col-md-2">
+                    Upload Image:
+                </label>
+                <div class="col-md-10">
+                    <input type="file" name="uploadimage" id="uploadimage">
+                    <p class="help-block">
+                        Allowed formats: jpeg, jpg, gif, png
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-10">
+                    <label>
+                        <input type="checkbox">I hereby accept the terms and conditions for using this site</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-10">
+                    <button type="submit" class="btn btn-info">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
 </body>
 </html>
