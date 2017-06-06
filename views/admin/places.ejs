@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include partials/head.ejs %>
+
+    <script type="text/javascript" src="/javascripts/datatables-1.10.15.min.js"></script>
+
+    <link type="text/css" href="/stylesheets/datatables-1.10.15.min.css">
+
+</head>
+<body>
+
+<div id="wrapper">
+
+    <% include partials/navbar.ejs %>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <h1>Places</h1>
+
+                <table id="places_table" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Main Image</th>
+                        <th>Images</th>
+                        <th>Audio</th>
+                        <th>Lat</th>
+                        <th>Lang</th>
+                        <th>Comments</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% places.forEach(function(place){ %>
+                    <tr>
+                        <td><a href="/admin/places/edit/<%= place._id %>"><%= place._id %></a></td>
+                        <td><%= place.title %></td>
+                        <td><%= place.description %></td>
+                        <td><a href="<%= place.main_image.path %>"><%= place.main_image.name %></a></td>
+                        <td>
+                            <% place.images.forEach(function(image){ %>
+
+                            <a href="<%= image.path %>"><%= image.name %></a>
+                            <a href="/places/<%= place._id %>/delete_image/<%= image.name %>">
+                                <img width="16" height="16" src="https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2012/05/no.png">
+                            </a>
+                            <br>
+
+                            <% }); %>
+                        </td>
+                        <td><a href="<%= place.audio.path %>"><%= place.audio.name %></a></td>
+                        <td><%= place.coordinates.lat %></td>
+                        <td><%= place.coordinates.lng %></td>
+                        <td><%= place.comments %></td>
+                        <td><%= place.created_at %></td>
+                        <td>
+                            <a href="/places/delete/<%= place._id %>">delete</a>
+                            <a href="/admin/places/edit/<%= place._id %>">edit</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+
+        <a class="btn btn-default" href="/admin/places/new">Add Place</a>
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#places_table').DataTable();
+    });
+</script>
+</body>
+</html>

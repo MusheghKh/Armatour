@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 
 var index = require('./routes/index');
-var admin = require('./routes/admin');
-var users = require('./routes/users');
+var admin = require('./routes/admin/index');
+var places = require('./routes/rest/places');
 
 var app = express();
 
@@ -33,7 +33,7 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/admin', admin);
-app.use('/users', users);
+app.use('/places', places);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include partials/head.ejs %>
+
+    <script type="text/javascript" src="/javascripts/datatables-1.10.15.min.js"></script>
+
+    <link type="text/css" href="/stylesheets/datatables-1.10.15.min.css">
+
+</head>
+<body>
+
+<div id="wrapper">
+
+    <% include partials/navbar.ejs %>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <h1>
+                    <% if(typeof place === 'undefined'){ %>
+                    New Place
+                    <% }else { %>
+                    Edit Place
+                    <% } %>
+                </h1>
+
+                <form role="form"
+                      action="<% if(typeof place !== 'undefined'){ %>/places/edit/<%= place._id %> <% }else { %>/places<% } %>"
+                      method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+
+                        <label>Title</label>
+                        <input class="form-control" type="text" name="title"
+                               value="<% if (typeof place !== 'undefined'){ %> <%= place.title %> <% } %>"><br>
+
+                        <label>Description</label>
+                        <input class="form-control" type="text" name="description"
+                               value="<% if (typeof place !== 'undefined'){ %> <%= place.description %> <% } %>"><br>
+
+                        <label>Lat</label>
+                        <input class="form-control" type="text" name="lat"
+                               value="<% if (typeof place !== 'undefined'){ %> <%= place.coordinates.lat %> <% } %>"><br>
+
+                        <label>Lang</label>
+                        <input class="form-control" type="text" name="lng"
+                               value="<% if (typeof place !== 'undefined'){ %> <%= place.coordinates.lng %> <% } %>"><br>
+
+                        <% if (typeof place === 'undefined'){ %>
+
+                        <label>Main Image</label>
+                        <input class="form-control" type="file" name="main_image"><br>
+
+                        <label>Audio</label>
+                        <input class="form-control" type="file" name="audio"><br>
+
+                        <% } %>
+
+                        <button class="btn btn-default" type="submit">Submit</button>
+
+                    </div>
+
+                </form>
+
+                <% if (typeof place !== 'undefined'){ %>
+
+                <form action="/places/edit/<%= place._id %>/add_image" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+
+                        <label>Add Other Image</label>
+                        <input class="form-control" type="file" name="other_image"><br>
+
+                        <button class="btn btn-default" type="submit">Submit</button>
+                    </div>
+                </form>
+
+                <% } %>
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+
+</body>
+</html>
