@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var checkLogin = require('../../lib/login-utils');
-var Place = require('../../models/Place');
+
+router.use('/places', require('./places'));
+router.use('/tours', require('./tours'));
 
 router.get('/login', checkLogin.isNeedAdminLogin, function (req, res, next) {
     res.render('admin/login', {title: 'Login'});
@@ -21,7 +23,7 @@ router.post('/register', checkLogin.isAdmin, passport.authenticate('local-signup
 }));
 
 router.get('/register', checkLogin.isAdmin, function (req, res, next) {
-    res.render('admin/register', {title: 'Register'/*, user: req.user*/});
+    res.render('admin/register', {title: 'Register', user: req.user});
 });
 
 router.get('/logout', checkLogin.isAdmin, function (req, res, next) {
@@ -63,26 +65,6 @@ router.get('/bootstrap-grid', checkLogin.isAdmin, function (req, res, next) {
 
 router.get('/forms', checkLogin.isAdmin, function (req, res, next) {
     res.render('admin/forms', {title: 'Forms', user: req.user});
-});
-
-router.get('/places', checkLogin.isAdmin, function (req, res, next) {
-    Place.find(function (err, places) {
-        if (err) return next(err);
-
-        res.render('admin/places', {title: 'Places', user: req.user, places: places});
-    });
-});
-
-router.get('/places/new', checkLogin.isAdmin, function (req, res, next) {
-    res.render('admin/places_new', {title: 'New Place', user: req.user});
-});
-
-router.get('/places/edit/:id', checkLogin.isAdmin, function (req, res, next) {
-    Place.findById(req.params.id, function (err, place) {
-        if (err) return next(err);
-
-        res.render('admin/places_new', {title: 'Edit Place', user: req.user, place: place});
-    });
 });
 
 module.exports = router;

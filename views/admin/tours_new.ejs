@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include partials/head.ejs %>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+    <% include partials/navbar.ejs %>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <h1>
+                    <% if(typeof tour === 'undefined'){ %>
+                    New Tour
+                    <% }else { %>
+                    Edit Tour
+                    <% } %>
+                </h1>
+
+                <form role="form"
+                      action="<% if(typeof tour !== 'undefined'){ %>/tours/edit/<%= tour._id %> <% }else { %>/tours<% } %>"
+                      method="post"
+                      enctype="<% if(typeof tour !== 'undefined'){ %>application/x-www-form-urlencoded<% }else { %>multipart/form-data<% } %>">
+
+                    <div class="form-group">
+
+                        <label>Title</label>
+                        <input class="form-control" type="text" name="title"
+                               value="<% if (typeof tour !== 'undefined'){ %><%= tour.title %><% } %>"><br>
+
+                        <label>Description</label>
+                        <input class="form-control" type="text" name="description"
+                               value="<% if (typeof tour !== 'undefined'){ %><%= tour.description %><% } %>"><br>
+
+                        <label>Start Lat</label>
+                        <input class="form-control" type="text" name="start_lat"
+                               value="<% if (typeof tour !== 'undefined'){ %><%= tour.coordinates.start.lat %><% } %>"><br>
+
+                        <label>Start Lang</label>
+                        <input class="form-control" type="text" name="start_lng"
+                               value="<% if (typeof tour !== 'undefined'){ %><%= tour.coordinates.start.lng %><% } %>"><br>
+
+                        <label>End Lat</label>
+                        <input class="form-control" type="text" name="end_lat"
+                               value="<% if (typeof tour !== 'undefined'){ %><%= tour.coordinates.end.lat %><% } %>"><br>
+
+                        <label>End Lang</label>
+                        <input class="form-control" type="text" name="end_lng"
+                               value="<% if (typeof tour !== 'undefined'){ %><%= tour.coordinates.end.lng %><% } %>"><br>
+
+                        <label>Place ID</label>
+                        <input class="form-control" type="text" name="place_id"
+                               value="<% if (typeof tour !== 'undefined'){ %><%= tour.place_id %><% } %>"><br>
+
+                        <% if (typeof tour === 'undefined'){ %>
+
+                        <label>Main Image</label>
+                        <input class="form-control" type="file" name="image"><br>
+
+                        <% } %>
+
+                        <button class="btn btn-default" type="submit">Submit</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+
+</body>
+</html>

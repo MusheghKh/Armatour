@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var placeSchema = mongoose.Schema({
+var tourSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -9,25 +9,24 @@ var placeSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    audio: {
+    image: {
         name: String,
         path: String
     },
-    main_image: {
-        name: String,
-        path: String
+    place_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Place'
     },
-    images: [{
-        name: String,
-        path: String
-    }],
     coordinates: {
-        lat: Number,
-        lng: Number
+        start: {
+            lat: Number,
+            lng: Number
+        },
+        end: {
+            lat: Number,
+            lng: Number
+        }
     },
-    comments: [{
-        text: String
-    }],
     updated_at: {
         type: Date,
         default: null
@@ -38,4 +37,4 @@ var placeSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Place', placeSchema);
+module.exports = mongoose.model('Tour', tourSchema);

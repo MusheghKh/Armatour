@@ -140,11 +140,16 @@ router.post('/edit/:id', checkLogin.isAdmin, function (req, res, next) {
     Place.findById(req.params.id, function (err, place) {
         if (err) return next(err);
 
-        place = new Place(req.body);
+        place.title = req.body.title;
+        place.description = req.body.description;
+        place.coordinates.lat = req.body.lat;
+        place.coordinates.lng = req.body.lng;
+        place.updated_at = Date.now();
+
         place.save(function (err) {
             if (err) return next(err);
 
-            return res.json(place);
+            return res.json('/admin/places');
         });
     });
 });

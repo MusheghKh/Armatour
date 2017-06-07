@@ -10,6 +10,7 @@ var passport = require('passport');
 var index = require('./routes/index');
 var admin = require('./routes/admin/index');
 var places = require('./routes/rest/places');
+var tours = require('./routes/rest/tours');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/admin', admin);
 app.use('/places', places);
+app.use('/tours', tours);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

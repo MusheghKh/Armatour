@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include partials/head.ejs %>
+
+    <script type="text/javascript" src="/javascripts/datatables-1.10.15.min.js"></script>
+
+    <link type="text/css" href="/stylesheets/datatables-1.10.15.min.css">
+
+</head>
+<body>
+
+<div id="wrapper">
+
+    <% include partials/navbar.ejs %>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <h1>Tours</h1>
+
+                <table id="tours_table" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Place ID</th>
+                        <th>Updated At</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% tours.forEach(function(tour){ %>
+                    <tr>
+                        <td><a href="/admin/tours/edit/<%= tour._id %>"><%= tour._id %></a></td>
+                        <td><%= tour.title %></td>
+                        <td><%= tour.description %></td>
+                        <td><a href="<%= tour.image.path %>"><%= tour.image.name %></a></td>
+                        <td><%= tour.coordinates.start.lat %>, <%= tour.coordinates.start.lng %></td>
+                        <td><%= tour.coordinates.end.lat %>, <%= tour.coordinates.end.lng %></td>
+                        <td><%= tour.place_id %></td>
+                        <td><%= tour.updated_at %></td>
+                        <td><%= tour.created_at %></td>
+                        <td>
+                            <a href="/tours/delete/<%= tour._id %>">delete</a>
+                            <a href="/admin/tours/edit/<%= tour._id %>">edit</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+
+        <a class="btn btn-default" href="/admin/tours/new">Add Tour</a>
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#tours_table').DataTable();
+    });
+</script>
+</body>
+</html>
