@@ -27,9 +27,9 @@ var storagePlace = multer.diskStorage({
 var uploadPlace = multer({storage: storagePlace});
 
 router.get('/', function (req, res, next) {
-    Place.find(function (err, works) {
+    Place.find(function (err, places) {
         if (err) return next(err);
-        res.json(works);
+        res.json(places);
     });
 });
 
@@ -110,7 +110,7 @@ router.get('/delete/:id', function (req, res, next) {
     });
 });
 
-router.get('/:id/delete_image/:name', function (req, res, next) {
+router.get('/:id/delete_image/:name', checkLogin.isAdmin, function (req, res, next) {
     Place.findById(req.params.id, function (err, place) {
         if (err) return next(err);
 

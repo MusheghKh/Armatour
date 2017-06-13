@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include partials/head.ejs %>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+    <% include partials/navbar.ejs %>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <h1>
+                    <% if(typeof tourCompany === 'undefined'){ %>
+                    New Tour Company
+                    <% }else { %>
+                    Edit Tour Company
+                    <% } %>
+                </h1>
+
+                <form role="form"
+                      action="<% if(typeof tourCompany !== 'undefined'){ %>/tour_companies/edit/<%= tourCompany._id %> <% }else { %>/tour_companies<% } %>"
+                      method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+
+                        <label>Title</label>
+                        <input class="form-control" type="text" name="title"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.title %> <% } %>"><br>
+
+                        <label>Address</label>
+                        <input class="form-control" type="text" name="address"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.address %> <% } %>"><br>
+
+                        <% if (typeof tourCompany === 'undefined'){ %>
+
+                        <label>Logo</label>
+                        <input class="form-control" type="file" name="logo"><br>
+
+                        <% } %>
+
+                        <label>Description</label>
+                        <input class="form-control" type="text" name="description"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.description %> <% } %>"><br>
+
+                        <label>Telephone</label>
+                        <input class="form-control" type="text" name="telephone"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.telephone %> <% } %>"><br>
+
+                        <label>Email</label>
+                        <input class="form-control" type="text" name="email"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.email %> <% } %>"><br>
+
+                        <label>Website</label>
+                        <input class="form-control" type="text" name="website"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.website %> <% } %>"><br>
+
+                        <label>Latitude</label>
+                        <input class="form-control" type="text" name="lat"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.coordinates.lat %> <% } %>"><br>
+
+                        <label>Longitude</label>
+                        <input class="form-control" type="text" name="lng"
+                               value="<% if (typeof tourCompany !== 'undefined'){ %> <%= tourCompany.coordinates.lng %> <% } %>"><br>
+
+                        <button class="btn btn-default" type="submit">Submit</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+
+</body>
+</html>

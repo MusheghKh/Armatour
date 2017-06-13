@@ -5,6 +5,7 @@ var checkLogin = require('../../lib/login-utils');
 
 router.use('/places', require('./places'));
 router.use('/tours', require('./tours'));
+router.use('/tour_companies', require('./tour_companies'));
 
 router.get('/login', checkLogin.isNeedAdminLogin, function (req, res, next) {
     res.render('admin/login', {title: 'Login'});
