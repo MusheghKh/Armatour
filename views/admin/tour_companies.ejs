@@ -51,9 +51,9 @@
                         <td><%= tourCompany.telephone %></td>
                         <td><%= tourCompany.email %></td>
                         <td><%= tourCompany.website %></td>
-                        <td><%= place.coordinates.lat %></td>
-                        <td><%= place.coordinates.lng %></td>
-                        <td><%= place.comments %></td>
+                        <td><%= tourCompany.coordinates.lat %></td>
+                        <td><%= tourCompany.coordinates.lng %></td>
+                        <td><%= tourCompany.comments %></td>
                         <td>
                             <a href="/tour_companies/delete/<%= tourCompany._id %>">delete</a>
                             <a href="/admin/tour_companies/edit/<%= tourCompany._id %>">edit</a>

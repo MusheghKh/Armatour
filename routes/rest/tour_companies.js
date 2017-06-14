@@ -7,7 +7,7 @@ var checkLogin = require('../../lib/login-utils');
 
 var storageTourCompany = multer.diskStorage({
     destination: function (req, file, callback) {
-        if(file.fieldname == 'logo'){
+        if(file.fieldname === 'logo'){
             callback(null, './public/images/uploads/tour_companies/logos/');
         }
     },
@@ -97,7 +97,7 @@ router.get('/:id/delete_logo/:name', checkLogin.isAdmin, function (req, res, nex
             if (fs.existsSync('./public/images/uploads/tour_companies/logos/' + tourCompany.logo.name)) {
                 fs.unlinkSync('./public/images/uploads/tour_companies/logos/' + tourCompany.logo.name);
             }
-        };
+        }
 
         tourCompany.save(function(err){
             if (err) return next(err);
