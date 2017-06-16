@@ -33,7 +33,7 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/', checkLogin.isAdmin, function (req, res, next) {
-    var callback = uploadTourCompany.fields([{name: 'logo', maxCount: 1}]);
+    var callback = uploadTourCompany.single('logo');
     callback(req, res, function (err) {
         if (err) return next(err);
 
@@ -41,34 +41,13 @@ router.post('/', checkLogin.isAdmin, function (req, res, next) {
         tourCompany.coordinates.lat = req.body.lat;
         tourCompany.coordinates.lng = req.body.lng;
 
-        var logoName = req.files.logo[0].originalname.replace(/\s+/g, '_').toLowerCase();
+        var logoName = req.file.originalname.replace(/\s+/g, '_').toLowerCase();
         tourCompany.logo.name = logoName;
         tourCompany.logo.path = '/images/uploads/tour_companies/logos/' + logoName;
 
         tourCompany.save(function (err) {
             if (err) return next(err);
             return res.redirect('/admin/tour_companies');
-        });
-    });
-});
-
-router.post('/edit/:id/add_logo', checkLogin.isAdmin, function (req, res, next) {
-    var callback = uploadTourCompany.fields([{name: 'logo', maxCount: 1}]);
-    callback(req, res, function (err) {
-        if (err) return next(err);
-
-        TourCompany.findById(req.params.id, function (err, tourCompany) {
-            if (err) return next(err);
-
-            var logoName = req.files.logo[0].originalname.replace(/\s+/g, '_').toLowerCase();
-            tourCompany.logo.name = logoName;
-            tourCompany.logo.path = '/images/uploads/tour_companies/logos/' + logoName;
-
-            tourCompany.save(function (err) {
-                if (err) return next(err);
-
-                return res.redirect('/admin/tour_companies');
-            });
         });
     });
 });
